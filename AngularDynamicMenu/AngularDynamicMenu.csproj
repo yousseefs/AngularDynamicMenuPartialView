@@ -137,7 +137,6 @@
     <Content Include="css\navMenu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\logo-embrapot.jpg" />
     <Content Include="ModeloMenuEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloMenuEntity.edmx</DependentUpon>
@@ -165,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ConsultaBookingController.cs" />
     <Compile Include="Controllers\ConsultaConteinerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,7 +209,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\TFC\Kernel\Conteiner\ConsultaConteiner.cshtml" />
-    <Content Include="Views\TFC\Generic\Booking\ConsultaBooking.cshtml" />
     <Content Include="Scripts\vendor\jquery\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -223,9 +220,11 @@
   <ItemGroup>
     <Folder Include="Controllers\TFC\Generic\" />
     <Folder Include="Controllers\TFC\Kernel\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\filters\" />
     <Folder Include="Scripts\services\" />
+    <Folder Include="Views\TFC\Generic\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
