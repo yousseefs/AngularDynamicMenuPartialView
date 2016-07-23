@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head>
+<body>
+    <h2>Consulta Conteiner</h2>
+    <div  ng-controller="ConsultaConteinerController">
+        <div class="container">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only">Unidade:</label>
+                    <input ng-model="aNroConteiner" type="search" class="form-control" maxlength="11" placeholder="Digite a unidade">
+                </div>
+                <button ng-click="pesquisar(aNroConteiner)" type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+            </form>  
+        </div>
+        <br />
+        <table ng-show="isVisible" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Unidade</th>
+                    <th>BL</th>
+                    <th>Navio</th>
+                    <th>CE mercante</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MSKU1234567</td>
+                    <td>HSKBU123156484</td>
+                    <td>ERSW1625N</td>
+                    <td>151123456789123</td>
+                </tr> 
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
+

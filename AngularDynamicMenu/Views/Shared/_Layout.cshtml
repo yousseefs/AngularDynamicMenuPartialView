@@ -1,0 +1,29 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/vendor/modernizr-2.6.2.js"></script>
+</head>
+
+<body>  
+        <div class="container body-content">
+            <img src="~/Images/logo-embrapot.jpg" />
+            <br />
+            <hr />
+            @RenderBody() 
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - EOL 2.0</p>
+            </footer>
+        </div>
+
+<script src="~/Scripts/vendor/jquery/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/vendor/bootstrap/bootstrap.min.js"></script>
+        <!--Add as Libs do Angular aqui...-->
+        @RenderSection("Scripts", false)
+</body>
+</html>

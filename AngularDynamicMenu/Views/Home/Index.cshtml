@@ -1,0 +1,33 @@
+﻿<div ng-app="EOL">
+    <div ng-controller="menuController" id="menuController">
+        <!-- Cria uma ng-template -->
+        <script type="text/ng-template" id="treeMenu">
+            <a href=" javascript:angular.element(document.getElementById('menuController')).scope().buscarController('{{menu.Url}}');">{{menu.Name}}</a>
+               <!-- Vai criar submenu se existir... -->
+                <ul ng-if="(Menu | filter:{ParentID : menu.ID}).length > 0">
+                    <li ng-repeat="menu in Menu | filter:{ParentID : menu.ID}" ng-include="'treeMenu'"></li>
+                </ul>
+        </script> 
+        <ul class="main-navigation">
+            <!-- Apenas criar menus principais -->
+            <li ng-repeat="menu in Menu | filter:{ParentID : 0}" ng-include="'treeMenu'"></li>
+        </ul>
+        <br />
+        <!-- Essa <div> renderiza a PartialView-->
+        <div dynamic="PartialView"></div>
+    </div> 
+ </div> 
+<link href="~/css/navMenu.css" rel="stylesheet" /> 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+ 
+@section Scripts{
+
+<script src="~/Scripts/vendor/bootstrap/bootstrap.min.js"></script>   
+<script src="~/Scripts/vendor/angularjs/angular.min.js"></script> 
+<script src="~/Scripts/App.js"></script>   
+<script src="~/Scripts/controllers/TSA/Generic/TsaMenu/menuController.js"></script>
+<script src="~/Scripts/directives/PartialView/DynamicPartialViewDirective.js"></script>
+<script src="~/Scripts/controllers/TFC/Generic/Conteiner/ConsultaConteinerController.js"></script>
+
+}
+
