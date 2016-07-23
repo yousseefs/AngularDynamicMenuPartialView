@@ -1,4 +1,6 @@
   # AngularDynamicMenuPartialView
+  ===================
+
 
   Utilizei tudo recursos do AngularJS, os códigos estão comentados =)
 
@@ -23,6 +25,9 @@
 
 
   ```
+![bancopreenchido](https://raw.githubusercontent.com/yousseefs/AngularDynamicMenuPartialView/master/banco.png)
 
 
-  Para funcionar no EOL, alterar o método GetSiteMenu() da classe HomeController, pegar direto pelo repositorio e adequar a Index.cshtml, pra preencher o menu na tela...
+
+
+  Para funcionar no projeto real, alterar o método GetSiteMenu() da classe HomeController, pegar direto pelo repositorio e adequar a Index.cshtml, pra preencher o menu na tela...
