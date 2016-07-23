@@ -2,7 +2,7 @@
 
   Utilizei tudo recursos do AngularJS, os códigos estão comentados =)
 
-  Criei esta tabela no prorio projeto(SQL Server DataBase)
+  Criei esta tabela no prorio projeto(SQL Server DataBase) e um DataEntites pra chamar ela no Controller
   ```
   CREATE TABLE [dbo].[Menu] (
       [ID]       INT           IDENTITY (1, 1) NOT NULL,
