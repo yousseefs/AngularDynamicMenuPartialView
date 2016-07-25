@@ -12,14 +12,12 @@ angular.module('EOL').controller('menuController', ['$scope', '$http', '$sce', f
     //Buscar no Controller as PartialViews...
     $scope.buscarController = function (dado) {
         $scope.PartialView = "";
-
-        if (dado != "#") {
-            $http.post(dado + '/Index').then(function (data) {
-                $scope.PartialView = data.data; 
-            }, function (error) {
-                console.log(error);
-            })
-        } 
+        
+        $http.post(dado + '/Index').then(function (data) {
+            $scope.PartialView = data.data; 
+        }, function (error) {
+            console.log(error);
+        }) 
     }
 }])
 ;

@@ -14,5 +14,12 @@ namespace AngularDynamicMenu.Controllers
         { 
             return PartialView("~/Views/TFC/Kernel/Conteiner/ConsultaConteiner.cshtml");
         }
+
+        public PartialViewResult abrirModal(string prParametro)
+        {
+            ViewBag.parametro = prParametro;
+
+            return PartialView("~/Views/TFC/Kernel/Conteiner/ConsultaConteinerModal.cshtml");
+        }
     }
 }

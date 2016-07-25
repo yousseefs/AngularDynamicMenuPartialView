@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Consulta Conteiner</h2>
-    <div  ng-controller="ConsultaConteinerController">
+    <div ng-controller="ConsultaConteinerController">
         <div class="container">
             <form class="form-inline" role="form">
                 <div class="form-group">
@@ -34,6 +34,8 @@
                     <td>151123456789123</td>
                 </tr> 
             </tbody>
+            <input class="form-control" ng-model="parametro" placeholder="digite o parametro da modal" required />
+            <button ng-click="abrirModal()" class="btn btn-default glyphicon glyphicon-send"></button>
         </table>
 
     </div>
