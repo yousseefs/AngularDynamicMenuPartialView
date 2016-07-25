@@ -1,4 +1,3 @@
-﻿/*Here I will write css for show horizantal nav menu*/
 ul {
   list-style: none;
   padding: 0;
@@ -47,5 +46,3 @@ ul:after {
 
 ul:after { clear: both; }
 
-/*YOU Can download this css from the below link (see youtube description)
-    */
