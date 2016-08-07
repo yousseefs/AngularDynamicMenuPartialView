@@ -11,13 +11,31 @@ angular.module('EOL').controller('menuController', ['$scope', '$http', '$sce', f
 
     //Buscar no Controller as PartialViews...
     $scope.buscarController = function (dado) {
-        $scope.PartialView = "";
-        
-        $http.post(dado + '/Index').then(function (data) {
-            $scope.PartialView = data.data; 
-        }, function (error) {
-            console.log(error);
-        }) 
-    }
+        $scope.PartialView = ""; 
+        if (dado != "") {
+            $http.post(dado + '/Index').then(function (data) {
+                $scope.PartialView = data.data;
+            }, function (error) {
+                console.log(error);
+            })
+        }
+    } 
+    
+   // $scope.class = "nav nav-second-level collapse";
+    $scope.selectedIndex;
+    $scope.changeClass = function ($index)
+    { 
+        $scope.selectedIndex = $index;
+       /* if ($scope.class === "nav nav-second-level collapse")
+        {
+            $scope.class = "nav nav-second-level collapse in";
+            
+        }
+        else
+        {
+            $scope.class = "nav nav-second-level collapse";
+            $scope.selectedIndex = $index;
+        }*/
+    }; 
 }])
 ;

@@ -1,35 +1,362 @@
-﻿<div ng-app="EOL">
+﻿@*<div ng-app="EOL">
     <div ng-controller="menuController" id="menuController">
+        @*    <!-- Cria uma ng-template -->
+            <script type="text/ng-template" id="treeMenu">
+                <a href=" javascript:angular.element(document.getElementById('menuController')).scope().buscarController('{{menu.Url}}');">{{menu.Name}}</a>
+                   <!-- Vai criar submenu se existir... -->
+                    <ul ng-if="(Menu | filter:{ParentID : menu.ID}).length > 0">
+                        <li ng-repeat="menu in Menu | filter:{ParentID : menu.ID}" ng-include="'treeMenu'"></li>
+                    </ul>
+            </script>
+            <ul class="main-navigation">
+                <!-- Apenas criar menus principais -->
+                <li ng-repeat="menu in Menu | filter:{ParentID : 0}" ng-include="'treeMenu'"></li>
+            </ul>
         <!-- Cria uma ng-template -->
-        <script type="text/ng-template" id="treeMenu">
-            <a href=" javascript:angular.element(document.getElementById('menuController')).scope().buscarController('{{menu.Url}}');">{{menu.Name}}</a>
-               <!-- Vai criar submenu se existir... -->
-                <ul ng-if="(Menu | filter:{ParentID : menu.ID}).length > 0">
-                    <li ng-repeat="menu in Menu | filter:{ParentID : menu.ID}" ng-include="'treeMenu'"></li>
-                </ul>
-        </script> 
-        <ul class="main-navigation">
-            <!-- Apenas criar menus principais -->
-            <li ng-repeat="menu in Menu | filter:{ParentID : 0}" ng-include="'treeMenu'"></li>
-        </ul>
+        <script type="text/ng-template" id="treeMenu"> 
+               <a href=" javascript:angular.element(document.getElementById('menuController')).scope().buscarController('{{menu.Url}}');">{{menu.Name}} <span class="fa arrow"></span></a> 
+            <ul class="nav nav-second-level collapse in" ng-if="(Menu | filter:{ParentID : menu.ID}).length > 0"> 
+            <li ng-repeat="menu in Menu | filter:{ParentID : menu.ID}" ng-include="'treeMenu'">
+                </li>
+            </ul>
+        </script>
+
+        <ul class="nav metismenu" id="side-menu"><li class="active" ng-repeat="menu in Menu | filter:{ParentID : 0}" ng-include="'treeMenu'"></li></ul>
         <br />
-        <!-- Essa <div> renderiza a PartialView-->
-        <div dynamic="PartialView"></div>
-    </div> 
- </div> 
-<link href="~/css/navMenu.css" rel="stylesheet" />  
- 
-@section Scripts{
-      
-<script src="~/Scripts/vendor/angularjs/angular.min.js"></script>  
-<script src="~/Scripts/vendor/bootstrap-angularjs/ui-bootstrap-tpls-0.12.0.min.js"></script>
+                        <!-- Essa <div> renderiza a PartialView-->
+                        <div dynamic="PartialView"></div>            
+    </div>
+        </div>
+        <link href="~/css/navMenu.css" rel="stylesheet" />*@
 
-<script src="~/Scripts/App.js"></script>   
-<script src="~/Scripts/controllers/TSA/Generic/TsaMenu/menuController.js"></script>
-<script src="~/Scripts/directives/PartialView/DynamicPartialViewDirective.js"></script>
-<script src="~/Scripts/controllers/TFC/Generic/Conteiner/ConsultaConteinerController.js"></script>
-<script src="~/Scripts/controllers/TFC/Generic/Conteiner/ConsultaConteinerModalController.js"></script>
+        @section Scripts{
+
+            <script src="~/Scripts/vendor/angularjs/angular.min.js"></script>
+            <script src="~/Scripts/vendor/bootstrap-angularjs/ui-bootstrap-tpls-0.12.0.min.js"></script>
+
+            <script src="~/Scripts/App.js"></script>
+            <script src="~/Scripts/controllers/TSA/Generic/TsaMenu/menuController.js"></script>
+            <script src="~/Scripts/directives/PartialView/DynamicPartialViewDirective.js"></script>
+            <script src="~/Scripts/controllers/TFC/Generic/Conteiner/ConsultaConteinerController.js"></script>
+            <script src="~/Scripts/controllers/TFC/Generic/Conteiner/ConsultaConteinerModalController.js"></script>
 
 
-}
+        }
+
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOL 2.0</title>
+    <link href="~/Inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="~/Inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Gritter -->
+    <link href="~/Inspinia/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="~/Inspinia/css/animate.css" rel="stylesheet">
+    <link href="~/Inspinia/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-app="EOL">
+        <div ng-controller="menuController" id="menuController">
+            <div id="wrapper">
+                <nav class="navbar-default navbar-static-side" role="navigation">
+                    <div class="sidebar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="nav-header">
+                                <div class="dropdown profile-element">
+                                    <span>
+                                        <img alt="image" class="img-circle" src="~/Inspinia/img/profile_small.jpg" />
+                                    </span>
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        <span class="clear">
+                                            <span class="block m-t-xs">
+                                                <strong class="font-bold">Youssef Ferreira</strong>
+                                            </span> <span class="text-muted text-xs block">Analista de Sistemas Jr. <b class="caret"></b></span>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                        <li><a href="#">Perfil</a></li>
+                                        <li><a href="#">Contato</a></li>
+                                        <li><a href="#">E-mail</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Sair</a></li>
+                                    </ul>
+                                </div>
+                                <div class="logo-element">
+                                    IN+
+                                </div>
+                            </li>
+                            <!--Criação do Menu-->
+                            <script type="text/ng-template" id="treeMenu">
+                                <a href=" javascript:angular.element(document.getElementById('menuController')).scope().buscarController('{{menu.Url}}');"><i class="fa fa-th-large"></i> <span class="nav-label">{{menu.Name}}</span><!--<span class="nav-label"></span>--> <span class="fa arrow"></span></a>
+                                <ul ng-class="$index == selectedIndex ? 'nav nav-second-level collapse in' : 'nav nav-second-level collapse'" ng-if="(Menu | filter:{ParentID : menu.ID}).length > 0">
+                                    <li ng-repeat="menu in Menu | filter:{ParentID : menu.ID}" ng-include="'treeMenu'">
+                                    </li>
+                                </ul>
+                            </script>
+                            <ul class="nav metismenu" id="side-menu"><li ng-click="changeClass($index)" ng-repeat="menu in Menu | filter:{ParentID : 0}" ng-include="'treeMenu'" ></li></ul>
+                            <!---->
+                    </div>
+                </nav>
+                <div id="page-wrapper" class="gray-bg dashbard-1">
+                    <div class="row border-bottom">
+                        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                            <div class="navbar-header">
+                                <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                                <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Pesquisar..." class="form-control" name="top-search" id="top-search">
+                                    </div>
+                                </form>
+                            </div>
+                            <ul class="nav navbar-top-links navbar-right">
+                                <li>
+                                    <span class="m-r-sm text-muted welcome-message">Bem vindo ao EOL 2.0.</span>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-envelope"></i>  <span class="label label-warning">3</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-messages">
+                                        <li>
+                                            <div class="dropdown-messages-box">
+                                                <a href="profile.html" class="pull-left">
+                                                    <img alt="image" class="img-circle" src="~/Inspinia/img/a7.jpg">
+                                                </a>
+                                                <div class="media-body">
+                                                    <small class="pull-right">46h ago</small>
+                                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                                    <small class="text-muted">3 dias atrás às 7:58 pm - 10.06.2014</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <div class="dropdown-messages-box">
+                                                <a href="profile.html" class="pull-left">
+                                                    <img alt="image" class="img-circle" src="~/Inspinia/img/a4.jpg">
+                                                </a>
+                                                <div class="media-body ">
+                                                    <small class="pull-right text-navy">5h ago</small>
+                                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                                    <small class="text-muted">Ontem às 1:21 pm - 11.06.2014</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <div class="dropdown-messages-box">
+                                                <a href="profile.html" class="pull-left">
+                                                    <img alt="image" class="img-circle" src="~/Inspinia/img/profile.jpg">
+                                                </a>
+                                                <div class="media-body ">
+                                                    <small class="pull-right">23h ago</small>
+                                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                                    <small class="text-muted">2 dias atrás às 2:30 am - 11.06.2014</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <div class="text-center link-block">
+                                                <a href="#">
+                                                    <i class="fa fa-envelope"></i> <strong>Ler todas as mensagens</strong>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>  
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-sign-out"></i> Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="row  border-bottom white-bg dashboard-header">
+                        <!-- Essa <div> renderiza a PartialView-->
+                        <div dynamic="PartialView"></div>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <strong>Copyright</strong> EOL 2.0 &copy; 2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="~/Inspinia/js/jquery-2.1.1.js"></script>
+    <script src="~/Inspinia/js/bootstrap.min.js"></script>
+    <script src="~/Inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Flot -->
+    <script src="~/Inspinia/js/plugins/flot/jquery.flot.js"></script>
+    <script src="~/Inspinia/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Inspinia/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="~/Inspinia/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="~/Inspinia/js/plugins/flot/jquery.flot.pie.js"></script>
+    <!-- Peity -->
+    <script src="~/Inspinia/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/Inspinia/js/demo/peity-demo.js"></script>
+    <!-- Custom a~/nd plugin javascript -->
+    <script src="~/Inspinia/js/inspinia.js"></script>
+    <script src="~/Inspinia/js/plugins/pace/pace.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="~/Inspinia/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- GITTER -->
+    <script src="~/Inspinia/js/plugins/gritter/jquery.gritter.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Inspinia/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Sparkline demo data  -->
+    <script src="~/Inspinia/js/demo/sparkline-demo.js"></script>
+    <!-- ChartJS-->
+    <script src="~/Inspinia/js/plugins/chartJs/Chart.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/Inspinia/js/plugins/toastr/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('versão 2.0', 'Bem vindo ao EOL');
+
+            }, 1300);
+
+
+            var data1 = [
+                [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+            ];
+            var data2 = [
+                [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+            ];
+            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                data1, data2
+            ],
+                    {
+                        series: {
+                            lines: {
+                                show: false,
+                                fill: true
+                            },
+                            splines: {
+                                show: true,
+                                tension: 0.4,
+                                lineWidth: 1,
+                                fill: 0.4
+                            },
+                            points: {
+                                radius: 0,
+                                show: true
+                            },
+                            shadowSize: 2
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#d5d5d5'
+                        },
+                        colors: ["#1ab394", "#464f88"],
+                        xaxis: {
+                        },
+                        yaxis: {
+                            ticks: 4
+                        },
+                        tooltip: false
+                    }
+            );
+
+            var doughnutData = [
+                {
+                    value: 300,
+                    color: "#a3e1d4",
+                    highlight: "#1ab394",
+                    label: "App"
+                },
+                {
+                    value: 50,
+                    color: "#dedede",
+                    highlight: "#1ab394",
+                    label: "Software"
+                },
+                {
+                    value: 100,
+                    color: "#b5b8cf",
+                    highlight: "#1ab394",
+                    label: "Laptop"
+                }
+            ];
+
+            var doughnutOptions = {
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                percentageInnerCutout: 45, // This is 0 for Pie charts
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+            };
+
+            // var ctx = document.getElementById("doughnutChart").getContext("2d");
+            //  var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+
+            var polarData = [
+                {
+                    value: 300,
+                    color: "#a3e1d4",
+                    highlight: "#1ab394",
+                    label: "App"
+                },
+                {
+                    value: 140,
+                    color: "#dedede",
+                    highlight: "#1ab394",
+                    label: "Software"
+                },
+                {
+                    value: 200,
+                    color: "#b5b8cf",
+                    highlight: "#1ab394",
+                    label: "Laptop"
+                }
+            ];
+
+            var polarOptions = {
+                scaleShowLabelBackdrop: true,
+                scaleBackdropColor: "rgba(255,255,255,0.75)",
+                scaleBeginAtZero: true,
+                scaleBackdropPaddingY: 1,
+                scaleBackdropPaddingX: 1,
+                scaleShowLine: true,
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+            };
+            ///  var ctx = document.getElementById("polarChart").getContext("2d");
+            //   var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+
+        });
+    </script>
+</body>
+</html>
+
+
 

@@ -7,20 +7,8 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/vendor/modernizr-2.6.2.js"></script>
-</head>
-
-<body>  
-        <div class="container body-content"> 
-            <br />
-            <hr />
-            @RenderBody() 
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - EOL 2.0</p>
-            </footer>
-        </div>
-     
+</head> 
+            @RenderBody()    
         <!--Add as Libs do Angular aqui...-->
-        @RenderSection("Scripts", false)
-</body>
+        @RenderSection("Scripts", false) 
 </html>
